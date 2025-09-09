@@ -27,6 +27,14 @@ const Home: React.FC = () => {
                 <img src="/assets/app_web.svg" alt="Use on Web" />
               </a>
             </div>
+            <div className="app-screenshots">
+              <img src="/assets/images/app1.jpg" alt="Parallel App Screenshot 1" />
+              <img src="/assets/images/app2.jpg" alt="Parallel App Screenshot 2" />
+              <img src="/assets/images/app3.jpg" alt="Parallel App Screenshot 3" />
+              <img src="/assets/images/app4.jpg" alt="Parallel App Screenshot 4" />
+              <img src="/assets/images/app5.jpg" alt="Parallel App Screenshot 5" />
+              <img src="/assets/images/app6.jpg" alt="Parallel App Screenshot 6" />
+            </div>
           </div>
         </section>
 

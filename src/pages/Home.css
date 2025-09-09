@@ -33,6 +33,22 @@
   margin-top: 1rem;
 }
 
+.app-screenshots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+  max-width: 800px;
+}
+
+.app-screenshots img {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  transition: transform 0.2s ease;
+}
+
 .home-highlight {
   background: #e7f2ff;
   border-left: 4px solid #1782FF;
@@ -52,6 +68,13 @@
     height: 45px;
   }
 
+  .app-screenshots {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+  }
+
   .operator-buttons {
     flex-direction: column;
     align-items: stretch;
@@ -65,5 +88,12 @@
 @media (max-width: 480px) {
   .app-store-btn img {
     height: 40px;
+  }
+
+  .app-screenshots {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 0.5rem;
+    margin: 1rem 0;
   }
 }
