@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Legal.css';
 import './Contact.css';
 
 const Contact: React.FC = () => {
@@ -22,80 +23,110 @@ const Contact: React.FC = () => {
     return name.trim() && validEmail && message.trim();
   };
 
-  return (
-    <div className="contact-container">
-      <div className="contact-content">
-        <h1>Contact Us</h1>
-        
-        <div className="contact-info">
-          <div className="info-section">
-            <h2>Get in Touch</h2>
-            <p>
-              Have questions about Parallel's parking solutions? We'd love to hear from you. 
-              Send us a message and we'll respond as soon as possible.
-            </p>
-          </div>
-          
-          <div className="info-section">
-            <h2>Business Inquiries</h2>
-            <p>
-              For business partnerships and enterprise solutions, please contact us at 
-              business@parkwithparallel.com
-            </p>
-          </div>
-          
-          <div className="info-section">
-            <h2>Support</h2>
-            <p>
-              Need technical support? Reach out to us at support@parkwithparallel.com
-            </p>
-          </div>
-        </div>
+  const isEmailInvalid = () => {
+    const { email } = formData;
+    return email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
-        <div className="contact-form-section">
-          <h2>Send us a Message</h2>
-          <form 
-            id="inquiry-form" 
-            action="https://formspree.io/f/mnndkrly" 
-            method="POST"
-            className="inquiry-form"
-          >
-            <div className="inline-inputs">
-              <input 
-                type="text" 
-                name="name" 
-                placeholder="Name" 
-                value={formData.name}
-                onChange={handleInputChange}
-                required 
-              />
-              <input 
-                type="email" 
-                name="email" 
-                placeholder="Email" 
-                value={formData.email}
-                onChange={handleInputChange}
-                required 
-              />
-            </div>
-            <div className="textarea-container">
-              <textarea 
-                name="message" 
-                placeholder="Message" 
-                value={formData.message}
-                onChange={handleInputChange}
-                required 
-              />
-              <button 
-                type="submit" 
-                className={`submit-btn ${isFormValid() ? 'enabled' : ''}`}
-                disabled={!isFormValid()}
-              >
-                <img src="/assets/send.svg" alt="Send" />
-              </button>
-            </div>
-          </form>
+  return (
+    <div className="legal-page-container">
+      <div className="legal-header">
+        <h1 className="legal-title">Contact Us</h1>
+        <div className="legal-meta">
+          <div className="legal-meta-item">
+          </div>
         </div>
+      </div>
+
+      <div className="legal-content">
+
+        <section className="legal-section" id="contact-form">
+          <h2 className="legal-section-title">Inquire</h2>
+          <div className="legal-section-content">
+            <p>
+              Inquire about setting up a Parallel in your parking lot. Use this form and provide a valid contact method, and we will respond to you within 24 hours.
+            </p>
+            <div className="contact-highlight">
+              <p>
+                We are currently piloting new products and may be able to offer a discounted rate to interested partners.
+              </p>
+            </div>
+            <form
+              id="inquiry-form"
+              action="https://formspree.io/f/mnndkrly"
+              method="POST"
+              className="contact-form"
+            >
+              <div className="form-row">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                  className="form-input"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  className={`form-input ${isEmailInvalid() ? 'invalid' : ''}`}
+                />
+              </div>
+              <div className="form-textarea-container">
+                <textarea
+                  name="message"
+                  placeholder="Your Message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  className="form-textarea"
+                />
+                <button
+                  type="submit"
+                  className={`form-submit-btn ${isFormValid() ? 'enabled' : ''}`}
+                  disabled={!isFormValid()}
+                >
+                  <img src="/assets/send.svg" alt="Send" />
+                  Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+        <section className="legal-section" id="contact-info">
+          <h2 className="legal-section-title">Contact</h2>
+          <div className="legal-section-content">
+            <p>
+              For questions about Parallel's parking solutions, business partnerships, or technical support,
+              please contact us at{' '}
+              <a href="mailto:info@parkwithparallel.com" className="legal-email">
+                info@parkwithparallel.com
+              </a>
+            </p>
+          </div>
+        </section>
+
+        <section className="legal-section" id="office-info">
+          <h2 className="legal-section-title">Our Office</h2>
+          <div className="legal-section-content">
+            <div className="legal-contact-info">
+              <h3 className="legal-contact-title">Parallel Parking Solutions Inc.</h3>
+              <div className="legal-contact-details">
+                <p>A204, 770 Brookfield Rd</p>
+                <p>Ottawa, ON K1V 2V4</p>
+                <p>+1 (613) 581-7719</p>
+                <p>
+                  <a href="mailto:info@parkwithparallel.com" className="legal-email">info@parkwithparallel.com</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
