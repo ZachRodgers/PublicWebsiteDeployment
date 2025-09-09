@@ -1,29 +1,63 @@
 import React from 'react';
+import './Legal.css';
 import './Home.css';
 
 const Home: React.FC = () => {
   return (
-    <div className="home-container">
-      <div id="home" className="coming-soon-box">
-        <p className="message">Parallel's Website is currently unavailable</p>
-      </div>
-      
-      <div id="app" className="section">
-        <div className="section-content">
-          <h2>Parallel App</h2>
-          <p>The Parallel mobile app is coming soon. Download it to manage your parking experience with ease and convenience.</p>
-        </div>
+    <div className="legal-page-container">
+      <div className="legal-header">
+        <h1 className="legal-title">What's New</h1>
       </div>
 
-      <div id="operator" className="section">
-        <div className="section-content">
-          <h2>Operator Portal</h2>
-          <p>Access the Parallel Operator Portal to manage your parking operations, view analytics, and configure your parking solutions.</p>
-          <a href="https://operator.parkwithparallel.com" className="btn-operator">
-            <img src="/assets/Logo_Operator_Inline.svg" alt="Operator Logo" style={{ height: '20px' }} />
-            Go to Operator Portal
-          </a>
-        </div>
+      <div className="legal-content">
+        <section className="legal-section" id="mobile-app">
+          <h2 className="legal-section-title">Mobile App</h2>
+          <div className="legal-section-content">
+            <p>
+              Download the Parallel mobile app to manage your parking experience with ease and convenience.
+            </p>
+            <div className="app-buttons">
+              <a href="#" className="app-store-btn">
+                <img src="/assets/app_ios_download.svg" alt="Download on the App Store" />
+              </a>
+              <a href="#" className="app-store-btn">
+                <img src="/assets/app_android_download.svg" alt="Get it on Google Play" />
+              </a>
+              <a href="https://pay.parkwithparallel.com" className="app-store-btn" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/app_web.svg" alt="Use on Web" />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="legal-section" id="operator-portal">
+          <h2 className="legal-section-title">Operator Portal</h2>
+          <div className="legal-section-content">
+            <p>
+              The Parallel Operator Portal provides comprehensive tools for managing parking operations,
+              viewing analytics, and configuring your parking solutions. Access real-time data,
+              manage user accounts, and optimize your parking lot performance.
+            </p>
+            <div className="operator-buttons">
+              <a href="/contact" className="legal-nav-link">
+                Request a Demo
+                <span className="legal-nav-arrow">→</span>
+              </a>
+            </div>
+            <div className="home-highlight">
+              <p>
+                If you already own Parallel and would like to manage your lot, visit the operator portal at{' '}
+                <a href="https://operator.parkwithparallel.com" className="legal-link">operator.parkwithparallel.com</a>
+              </p>
+            </div>
+            <div className="operator-portal-btn">
+              <a href="https://operator.parkwithparallel.com" className="legal-nav-link">
+                <img src="/assets/Logo_Operator_Inline.svg" alt="Operator Logo" style={{ height: '16px' }} />
+                <span className="legal-nav-arrow">→</span>
+              </a>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
