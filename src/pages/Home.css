@@ -1,5 +1,47 @@
 /* Home Page Specific Styles */
 
+.hero-video-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.hero-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 1rem;
+}
+
+.video-control-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.video-control-btn:hover {
+  background: rgba(0, 0, 0, 0.4);
+  transform: scale(1.05);
+}
+
+.video-control-btn svg {
+  transition: transform 0.2s ease;
+}
+
 .app-buttons {
   display: flex;
   gap: 1rem;
@@ -59,6 +101,22 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .hero-video-container {
+    margin: 1.5rem auto;
+    border-radius: 0.75rem;
+  }
+
+  .hero-video {
+    border-radius: 0.75rem;
+  }
+
+  .video-control-btn {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 44px;
+    height: 44px;
+  }
+
   .app-buttons {
     flex-direction: column;
     align-items: flex-start;
@@ -86,6 +144,27 @@
 }
 
 @media (max-width: 480px) {
+  .hero-video-container {
+    margin: 1rem auto;
+    border-radius: 0.5rem;
+  }
+
+  .hero-video {
+    border-radius: 0.5rem;
+  }
+
+  .video-control-btn {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  .video-control-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
   .app-store-btn img {
     height: 40px;
   }

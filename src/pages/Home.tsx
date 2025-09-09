@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import './Legal.css';
 import './Home.css';
 
 const Home: React.FC = () => {
+  const [isPlaying, setIsPlaying] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const togglePlayPause = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
   return (
     <div className="legal-page-container">
       <div className="legal-header">
@@ -10,6 +24,37 @@ const Home: React.FC = () => {
       </div>
 
       <div className="legal-content">
+        <div className="hero-video-container">
+          <video
+            ref={videoRef}
+            className="hero-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/assets/images/app1.jpg"
+          >
+            <source src="/assets/hero/herovideo.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <button
+            className="video-control-btn"
+            onClick={togglePlayPause}
+            aria-label={isPlaying ? "Pause video" : "Play video"}
+          >
+            {isPlaying ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6" y="4" width="4" height="16" fill="white" />
+                <rect x="14" y="4" width="4" height="16" fill="white" />
+              </svg>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5v14l11-7z" fill="white" />
+              </svg>
+            )}
+          </button>
+        </div>
+
         <section className="legal-section" id="mobile-app">
           <h2 className="legal-section-title">Mobile App</h2>
           <div className="legal-section-content">
@@ -17,10 +62,10 @@ const Home: React.FC = () => {
               Download the Parallel mobile app to manage your parking experience with ease and convenience.
             </p>
             <div className="app-buttons">
-              <a href="#" className="app-store-btn">
+              <a href="https://apps.apple.com/app/parallel-parking" className="app-store-btn" target="_blank" rel="noopener noreferrer">
                 <img src="/assets/app_ios_download.svg" alt="Download on the App Store" />
               </a>
-              <a href="#" className="app-store-btn">
+              <a href="https://play.google.com/store/apps/details?id=com.parallel.parking" className="app-store-btn" target="_blank" rel="noopener noreferrer">
                 <img src="/assets/app_android_download.svg" alt="Get it on Google Play" />
               </a>
               <a href="https://pay.parkwithparallel.com" className="app-store-btn" target="_blank" rel="noopener noreferrer">
