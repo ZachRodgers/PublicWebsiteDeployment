@@ -116,6 +116,25 @@
   font-weight: 500;
 }
 
+.legal-nav-item {
+  position: relative;
+}
+
+.legal-hover-arrow {
+  position: absolute;
+  right: 12px;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  font-size: 18px;
+  color: var(--color-text-muted);
+  bottom: 6px;
+}
+
+.legal-nav-item:hover .legal-hover-arrow {
+  opacity: 1;
+}
+
+
 /* Mobile styles */
 @media (max-width: 768px) {
   .sidebar-fixed-header {
@@ -155,4 +174,5 @@
     background-color: rgba(0, 0, 0, 0.05);
     padding: 16px 20px;
   }
+
 }

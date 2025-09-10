@@ -18,8 +18,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
     { path: '/', label: 'Home', section: 'home' },
     { path: '/#mobile-app', label: 'App', section: 'mobile-app' },
     { path: '/#operator-portal', label: 'Operator', section: 'operator-portal' },
-    { path: '/legal/app/terms-of-service', label: 'Terms', section: null },
-    { path: '/legal/app/privacy-policy', label: 'Privacy', section: null },
+    { path: '/legal', label: 'Legal', section: null },
     { path: '/contact', label: 'Contact', section: null }
   ];
 
@@ -62,6 +61,9 @@ const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
     if (link.section && location.pathname === '/') {
       return activeSection === link.section;
     }
+    if (link.path === '/legal') {
+      return location.pathname.startsWith('/legal');
+    }
     return location.pathname === link.path;
   };
 
@@ -81,13 +83,13 @@ const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
       {/* Fixed header that always stays visible */}
       <div className="sidebar-fixed-header">
         <img src="/assets/Logo_Parallel.svg" alt="Parallel Logo" className="sidebar-logo" />
-        <button 
+        <button
           className="sidebar-toggle"
           onClick={toggleSidebar}
           aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
-          <img 
-            src={isCollapsed ? "/assets/SidebarOpened.svg" : "/assets/SidebarClosed.svg"} 
+          <img
+            src={isCollapsed ? "/assets/SidebarOpened.svg" : "/assets/SidebarClosed.svg"}
             alt={isCollapsed ? "Expand" : "Collapse"}
             className="sidebar-toggle-icon"
           />
@@ -96,16 +98,75 @@ const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
 
       <div className={`sidebar ${isCollapsed ? 'collapsed' : ''} ${isMobile ? 'mobile' : ''}`}>
         <nav className="sidebar-nav">
-          {links.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              onClick={(e) => handleLinkClick(e, link)}
-              className={`sidebar-link ${isActive(link) ? 'active' : ''}`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {location.pathname.startsWith('/legal') ? (
+            // Show submenu when on legal pages
+            <>
+              <Link
+                to="/"
+                className="sidebar-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/');
+                  if (isMobile) setIsCollapsed(true);
+                }}
+              >
+                ← Back
+              </Link>
+              <Link
+                to="/legal/app/terms-of-service"
+                className="sidebar-link"
+                onClick={(e) => {
+                  if (isMobile) setIsCollapsed(true);
+                }}
+              >
+                App Terms
+              </Link>
+              <Link
+                to="/legal/app/privacy-policy"
+                className="sidebar-link"
+                onClick={(e) => {
+                  if (isMobile) setIsCollapsed(true);
+                }}
+              >
+                App Privacy
+              </Link>
+              <a
+                href="https://operator.parkwithparallel.com/terms-of-service"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sidebar-link"
+                onClick={() => {
+                  if (isMobile) setIsCollapsed(true);
+                }}
+              >
+                Operator Terms
+              </a>
+              <a
+                href="https://operator.parkwithparallel.com/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sidebar-link"
+                onClick={() => {
+                  if (isMobile) setIsCollapsed(true);
+                }}
+              >
+                Operator Privacy
+              </a>
+            </>
+          ) : (
+            // Show normal links when not on legal pages
+            links.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                onClick={(e) => handleLinkClick(e, link)}
+                className={`sidebar-link ${isActive(link) ? 'active' : ''} ${link.path === '/legal' ? 'legal-nav-item' : ''}`}
+              >
+                {link.label}
+                {link.path === '/legal' && <span className="legal-hover-arrow">→</span>}
+              </Link>
+            ))
+          )}
         </nav>
       </div>
     </>

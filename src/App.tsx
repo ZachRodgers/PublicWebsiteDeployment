@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
+import Legal from './pages/Legal';
 import TermsAndConditions from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Contact from './pages/Contact';
@@ -17,6 +18,7 @@ function AppComponent() {
         <main className={`main-content ${isSidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/legal" element={<Legal />} />
             <Route path="/legal/app/terms-of-service" element={<TermsAndConditions />} />
             <Route path="/legal/app/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/contact" element={<Contact />} />
