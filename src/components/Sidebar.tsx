@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useScrollToSection } from '../hooks/useScrollToSection';
 import './Sidebar.css';
 
@@ -9,6 +9,7 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { activeSection, scrollToSection } = useScrollToSection();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -37,9 +38,18 @@ const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
   }, []);
 
   const handleLinkClick = (e: React.MouseEvent, link: typeof links[0]) => {
-    if (link.section && location.pathname === '/') {
-      e.preventDefault();
-      scrollToSection(link.section);
+    if (link.section) {
+      if (location.pathname === '/') {
+        // Already on home page, just scroll to section
+        e.preventDefault();
+        scrollToSection(link.section);
+      } else {
+        // On different page, navigate to home and then scroll
+        e.preventDefault();
+        navigate('/');
+        // Store the section to scroll to after navigation
+        sessionStorage.setItem('scrollToSection', link.section);
+      }
     }
 
     // Close sidebar on mobile after clicking a link

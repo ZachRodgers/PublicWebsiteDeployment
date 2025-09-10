@@ -1,11 +1,26 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Home.css';
 import LoadingLogo from '../components/LoadingLogo';
+import { useScrollToSection } from '../hooks/useScrollToSection';
 
 const Home: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { scrollToSection } = useScrollToSection();
+
+  // Handle navigation from other pages
+  useEffect(() => {
+    const sectionToScroll = sessionStorage.getItem('scrollToSection');
+    if (sectionToScroll) {
+      // Clear the stored section
+      sessionStorage.removeItem('scrollToSection');
+      // Wait for the page to be fully rendered, then scroll
+      setTimeout(() => {
+        scrollToSection(sectionToScroll);
+      }, 200);
+    }
+  }, [scrollToSection]);
 
   const togglePlayPause = () => {
     if (videoRef.current) {
