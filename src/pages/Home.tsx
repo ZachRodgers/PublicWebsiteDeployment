@@ -1,11 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Home.css';
 import LoadingLogo from '../components/LoadingLogo';
+import YoutubeVideoModal from '../components/YoutubeVideoModal';
 import { useScrollToSection } from '../hooks/useScrollToSection';
 
 const Home: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isVideoLoading, setIsVideoLoading] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState<{ id: string; title: string } | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const { scrollToSection } = useScrollToSection();
 
@@ -39,6 +42,16 @@ const Home: React.FC = () => {
 
   const handleVideoError = () => {
     setIsVideoLoading(false);
+  };
+
+  const openVideoModal = (videoId: string, title: string) => {
+    setCurrentVideo({ id: videoId, title });
+    setModalOpen(true);
+  };
+
+  const closeVideoModal = () => {
+    setModalOpen(false);
+    setCurrentVideo(null);
   };
 
   return (
@@ -142,9 +155,57 @@ const Home: React.FC = () => {
                 <a href="https://operator.parkwithparallel.com" className="home-link">operator.parkwithparallel.com</a>
               </p>
             </div>
+            
+            <div className="operator-tutorials">
+              <h3 className="tutorials-title">Operator Tutorials</h3>
+              <p className="tutorials-description">
+                Tutorials on features of the operator portal and how to use them. Please note more tutorials are available within the web app itself.
+              </p>
+              <div className="tutorial-thumbnails">
+                <div className="tutorial-thumbnail" onClick={() => openVideoModal('V2lEswZgZEw', 'Dashboard Tutorial')}>
+                  <img src="/assets/images/tutorial_thumnail_dashboard.jpg" alt="Dashboard Tutorial" />
+                  <div className="play-button-overlay">
+                    <button className="play-button" aria-label="Play Dashboard Tutorial">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 5v14l11-7z" fill="white" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div className="tutorial-thumbnail" onClick={() => openVideoModal('D4K5Z3psYAI', 'Registry Tutorial')}>
+                  <img src="/assets/images/tutorial_thumnail_registry.jpg" alt="Registry Tutorial" />
+                  <div className="play-button-overlay">
+                    <button className="play-button" aria-label="Play Registry Tutorial">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 5v14l11-7z" fill="white" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div className="tutorial-thumbnail" onClick={() => openVideoModal('HoAepPFQdG8', 'Advanced Settings Tutorial')}>
+                  <img src="/assets/images/tutorial_thumnail_advanced.jpg" alt="Advanced Settings Tutorial" />
+                  <div className="play-button-overlay">
+                    <button className="play-button" aria-label="Play Advanced Settings Tutorial">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 5v14l11-7z" fill="white" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </div>
+      
+      {currentVideo && (
+        <YoutubeVideoModal
+          isOpen={modalOpen}
+          onClose={closeVideoModal}
+          videoId={currentVideo.id}
+          title={currentVideo.title}
+        />
+      )}
     </div>
   );
 };
