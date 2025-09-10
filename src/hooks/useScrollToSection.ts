@@ -18,7 +18,7 @@ export const useScrollToSection = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'app', 'operator'];
+      const sections = ['home', 'mobile-app', 'operator-portal'];
       const scrollPosition = window.scrollY + 150; // Offset for better detection
 
       for (let i = sections.length - 1; i >= 0; i--) {

@@ -19,12 +19,8 @@ const Home: React.FC = () => {
 
   return (
     <div className="legal-page-container">
-      <div className="legal-header">
-        <h1 className="legal-title">What's New</h1>
-      </div>
-
       <div className="legal-content">
-        <div className="hero-video-container">
+        <div id="home" className="hero-video-container">
           <video
             ref={videoRef}
             className="hero-video"

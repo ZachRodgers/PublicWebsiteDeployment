@@ -15,8 +15,8 @@ const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
 
   const links = [
     { path: '/', label: 'Home', section: 'home' },
-    { path: '/#app', label: 'App', section: 'app' },
-    { path: '/#operator', label: 'Operator', section: 'operator' },
+    { path: '/#mobile-app', label: 'App', section: 'mobile-app' },
+    { path: '/#operator-portal', label: 'Operator', section: 'operator-portal' },
     { path: '/legal/app/terms-of-service', label: 'Terms', section: null },
     { path: '/legal/app/privacy-policy', label: 'Privacy', section: null },
     { path: '/contact', label: 'Contact', section: null }
