@@ -14,12 +14,12 @@
 }
 
 #p-background {
-    stroke: #6b7280;
+    stroke: var(--color-text-muted);
     stroke-width: 4;
 }
 
 #p-stroke {
-    stroke: #1782FF;
+    stroke: var(--color-primary);
     stroke-width: 2.7;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -31,30 +31,30 @@
 @keyframes trace {
     0% {
         stroke-dashoffset: 500;
-        fill: #ffffff;
+        fill: var(--color-background);
     }
 
     15% {
-        fill: #ffffff;
+        fill: var(--color-background);
     }
 
     50% {
         stroke-dashoffset: 0;
-        fill: #1782FF;
+        fill: var(--color-primary);
     }
 
     75% {
-        fill: #ffffff;
+        fill: var(--color-background);
     }
 
     100% {
         stroke-dashoffset: -500;
-        fill: #ffffff;
+        fill: var(--color-background);
     }
 }
 
 .loading-text {
-    color: #374151;
+    color: var(--color-text-secondary);
     font-size: 14px;
     margin-top: 20px;
     text-align: center;

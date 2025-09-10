@@ -1,6 +1,6 @@
 .page-container {
   min-height: 100vh;
-  background: #fff;
+  background: var(--color-background);
   padding: 40px 20px;
   display: flex;
   justify-content: center;
@@ -10,33 +10,33 @@
 .page-content {
   max-width: 800px;
   margin: 0 auto;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-family);
   text-align: center;
 }
 
 .page-content h1 {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 2rem;
+  font-size: var(--font-size-5xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-xl);
   font-weight: 500;
 }
 
 .content-section {
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-xl);
 }
 
 .content-section h2 {
-  font-size: 1.5rem;
-  color: #333;
-  margin-bottom: 1rem;
+  font-size: var(--font-size-2xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
   font-weight: 500;
 }
 
 .content-section p {
-  font-size: 1rem;
-  color: #666;
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
   line-height: 1.6;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
 }
 
 @media (max-width: 768px) {
@@ -47,10 +47,10 @@
   }
 
   .page-content h1 {
-    font-size: 2rem;
+    font-size: var(--font-size-4xl);
   }
 
   .content-section h2 {
-    font-size: 1.25rem;
+    font-size: var(--font-size-xl);
   }
 }
