@@ -1,11 +1,11 @@
 import React from 'react';
 import './Legal.css';
 
-const TermsAndConditions: React.FC = () => {
+const TermsOfService_App: React.FC = () => {
   return (
     <div className="legal-page-container">
       <div className="legal-header">
-        <h1 className="legal-title">Terms of Service</h1>
+        <h1 className="legal-title">Terms of Service: App</h1>
         <div className="legal-meta">
           <div className="legal-meta-item">
             <span className="legal-meta-label">Effective Date:</span>
@@ -19,7 +19,7 @@ const TermsAndConditions: React.FC = () => {
 
         <div className="legal-navigation">
           <a href="/legal/app/privacy-policy" className="legal-nav-link">
-            Privacy Policy
+            App Privacy Policy
             <span className="legal-nav-arrow">→</span>
           </a>
           <div></div>
@@ -223,4 +223,4 @@ const TermsAndConditions: React.FC = () => {
   );
 };
 
-export default TermsAndConditions;
+export default TermsOfService_App;

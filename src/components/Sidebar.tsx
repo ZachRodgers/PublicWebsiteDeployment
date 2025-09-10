@@ -130,28 +130,24 @@ const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
               >
                 App Privacy
               </Link>
-              <a
-                href="https://operator.parkwithparallel.com/terms-of-service"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/legal/operator/terms-of-service"
                 className="sidebar-link"
                 onClick={() => {
                   if (isMobile) setIsCollapsed(true);
                 }}
               >
                 Operator Terms
-              </a>
-              <a
-                href="https://operator.parkwithparallel.com/privacy-policy"
-                target="_blank"
-                rel="noopener noreferrer"
+              </Link>
+              <Link
+                to="/legal/operator/privacy-policy"
                 className="sidebar-link"
                 onClick={() => {
                   if (isMobile) setIsCollapsed(true);
                 }}
               >
                 Operator Privacy
-              </a>
+              </Link>
             </>
           ) : (
             // Show normal links when not on legal pages

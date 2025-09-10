@@ -50,24 +50,20 @@ const Legal: React.FC = () => {
                 App Privacy Policy
                 <span className="legal-nav-arrow">→</span>
               </Link>
-              <a
-                href="https://operator.parkwithparallel.com/terms-of-service"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/legal/operator/terms-of-service"
                 className="legal-nav-link"
               >
                 Operator Terms of Service
                 <span className="legal-nav-arrow">→</span>
-              </a>
-              <a
-                href="https://operator.parkwithparallel.com/privacy-policy"
-                target="_blank"
-                rel="noopener noreferrer"
+              </Link>
+              <Link
+                to="/legal/operator/privacy-policy"
                 className="legal-nav-link"
               >
                 Operator Privacy Policy
                 <span className="legal-nav-arrow">→</span>
-              </a>
+              </Link>
             </div>
           </div>
         </section>
