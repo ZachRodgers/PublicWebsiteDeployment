@@ -8,6 +8,7 @@ import PrivacyPolicy_App from './pages/PrivacyPolicy_App';
 import TermsOfService_Operator from './pages/TermsOfService_Operator';
 import PrivacyPolicy_Operator from './pages/PrivacyPolicy_Operator';
 import Contact from './pages/Contact';
+import Careers from './pages/Careers';
 import './App.css';
 
 function AppComponent() {
@@ -26,6 +27,7 @@ function AppComponent() {
             <Route path="/legal/operator/terms-of-service" element={<TermsOfService_Operator />} />
             <Route path="/legal/operator/privacy-policy" element={<PrivacyPolicy_Operator />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/careers" element={<Careers />} />
           </Routes>
         </main>
       </div>

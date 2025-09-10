@@ -19,7 +19,8 @@ const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
     { path: '/#mobile-app', label: 'App', section: 'mobile-app' },
     { path: '/#operator-portal', label: 'Operator', section: 'operator-portal' },
     { path: '/legal', label: 'Legal', section: null },
-    { path: '/contact', label: 'Contact', section: null }
+    { path: '/contact', label: 'Contact', section: null },
+    { path: '/careers', label: 'Careers', section: null }
   ];
 
   useEffect(() => {
