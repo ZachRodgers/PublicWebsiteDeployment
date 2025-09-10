@@ -92,18 +92,20 @@ const Home: React.FC = () => {
                 Request a Demo
                 <span className="legal-nav-arrow">→</span>
               </a>
+              <a href="https://operator.parkwithparallel.com" className="legal-nav-link">
+                <img src="/assets/Logo_Operator_Inline.svg" alt="Operator Logo" style={{ height: '16px' }} />
+                <span className="legal-nav-arrow">→</span>
+              </a>
+            </div>
+            <div className="operator-screenshots">
+              <img src="/assets/images/operator1.jpg" alt="Parallel Operator Portal Screenshot 1" />
+              <img src="/assets/images/operator.jpg" alt="Parallel Operator Portal Screenshot 2" />
             </div>
             <div className="home-highlight">
               <p>
                 If you already own Parallel and would like to manage your lot, visit the operator portal at{' '}
                 <a href="https://operator.parkwithparallel.com" className="legal-link">operator.parkwithparallel.com</a>
               </p>
-            </div>
-            <div className="operator-portal-btn">
-              <a href="https://operator.parkwithparallel.com" className="legal-nav-link">
-                <img src="/assets/Logo_Operator_Inline.svg" alt="Operator Logo" style={{ height: '16px' }} />
-                <span className="legal-nav-arrow">→</span>
-              </a>
             </div>
           </div>
         </section>

@@ -19,7 +19,7 @@
 .video-control-btn {
   position: absolute;
   top: 1rem;
-  right: 1rem;
+  left: 1rem;
   background: rgba(0, 0, 0, 0.2);
   border: none;
   border-radius: 50%;
@@ -71,8 +71,23 @@
   flex-wrap: wrap;
 }
 
-.operator-portal-btn {
-  margin-top: 1rem;
+.operator-screenshots {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
+  max-width: 100%;
+}
+
+.operator-screenshots img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.operator-screenshots img:hover {
+  transform: translateY(-2px);
 }
 
 .app-screenshots {
@@ -112,7 +127,7 @@
 
   .video-control-btn {
     top: 0.75rem;
-    right: 0.75rem;
+    left: 0.75rem;
     width: 44px;
     height: 44px;
   }
@@ -141,6 +156,11 @@
   .operator-buttons .legal-nav-link {
     justify-content: center;
   }
+
+  .operator-screenshots {
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+  }
 }
 
 @media (max-width: 480px) {
@@ -155,7 +175,7 @@
 
   .video-control-btn {
     top: 0.5rem;
-    right: 0.5rem;
+    left: 0.5rem;
     width: 40px;
     height: 40px;
   }
@@ -172,6 +192,11 @@
   .app-screenshots {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(6, 1fr);
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .operator-screenshots {
     gap: 0.5rem;
     margin: 1rem 0;
   }
