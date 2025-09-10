@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import './Legal.css';
 import './Home.css';
 
 const Home: React.FC = () => {
@@ -18,42 +17,44 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="legal-page-container">
-      <div className="legal-content">
-        <div id="home" className="hero-video-container">
-          <video
-            ref={videoRef}
-            className="hero-video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/assets/images/app1.jpg"
-          >
-            <source src="/assets/hero/herovideo.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <button
-            className="video-control-btn"
-            onClick={togglePlayPause}
-            aria-label={isPlaying ? "Pause video" : "Play video"}
-          >
-            {isPlaying ? (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="6" y="4" width="4" height="16" fill="white" />
-                <rect x="14" y="4" width="4" height="16" fill="white" />
-              </svg>
-            ) : (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 5v14l11-7z" fill="white" />
-              </svg>
-            )}
-          </button>
+    <div className="home-page-container">
+      <div className="home-content">
+        <div id="home" className="hero-video-wrapper">
+          <div className="hero-video-container">
+            <video
+              ref={videoRef}
+              className="hero-video"
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="/assets/images/app1.jpg"
+            >
+              <source src="/assets/hero/herovideo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <button
+              className="video-control-btn"
+              onClick={togglePlayPause}
+              aria-label={isPlaying ? "Pause video" : "Play video"}
+            >
+              {isPlaying ? (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="6" y="4" width="4" height="16" fill="white" />
+                  <rect x="14" y="4" width="4" height="16" fill="white" />
+                </svg>
+              ) : (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 5v14l11-7z" fill="white" />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
 
-        <section className="legal-section" id="mobile-app">
-          <h2 className="legal-section-title">Mobile App</h2>
-          <div className="legal-section-content">
+        <section className="home-section" id="mobile-app">
+          <h2 className="home-section-title">Mobile App</h2>
+          <div className="home-section-content">
             <p>
               Download the Parallel mobile app to manage your parking experience with ease and convenience.
             </p>
@@ -79,9 +80,9 @@ const Home: React.FC = () => {
           </div>
         </section>
 
-        <section className="legal-section" id="operator-portal">
-          <h2 className="legal-section-title">Operator Portal</h2>
-          <div className="legal-section-content">
+        <section className="home-section" id="operator-portal">
+          <h2 className="home-section-title">Operator Portal</h2>
+          <div className="home-section-content">
             <p>
               The Parallel Operator Portal provides comprehensive tools for managing parking operations,
               viewing analytics, and configuring your parking solutions. Access real-time data,
@@ -104,7 +105,7 @@ const Home: React.FC = () => {
             <div className="home-highlight">
               <p>
                 If you already own Parallel and would like to manage your lot, visit the operator portal at{' '}
-                <a href="https://operator.parkwithparallel.com" className="legal-link">operator.parkwithparallel.com</a>
+                <a href="https://operator.parkwithparallel.com" className="home-link">operator.parkwithparallel.com</a>
               </p>
             </div>
           </div>
