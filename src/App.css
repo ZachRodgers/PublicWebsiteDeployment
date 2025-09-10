@@ -116,22 +116,86 @@ p:last-child {
   margin-bottom: 0;
 }
 
-a:not(.sidebar-link):not(button) {
+/* Universal Link System - Clean Architecture */
+
+/* 1. Base link styles - all links start clean */
+a:not(.sidebar-link) {
   color: var(--color-primary);
   text-decoration: none;
   font-weight: 500;
   transition: color var(--transition-fast);
 }
 
-a:not(.sidebar-link):not(button):hover {
+/* 2. Interactive links get underlines on hover (default behavior) */
+a:not(.sidebar-link):hover {
   color: var(--color-primary-hover);
   text-decoration: underline;
 }
 
-a:not(.sidebar-link):not(button):focus {
+a:not(.sidebar-link):focus {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
+}
+
+/* Sidebar links have their own styling - no underlines or focus outlines */
+.sidebar-link {
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+.sidebar-link:hover {
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+.sidebar-link:focus {
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+/* 3. Button elements and their children never get underlines */
+button,
+button *,
+button:hover,
+button *:hover,
+button:focus,
+button *:focus {
+  text-decoration: none !important;
+}
+
+/* 4. Links that act as buttons (have button-like styling) don't get underlines */
+a[role="button"],
+a[type="button"],
+a.button,
+a.btn,
+a[class*="button"],
+a[class*="btn"] {
+  text-decoration: none !important;
+}
+
+a[role="button"]:hover,
+a[type="button"]:hover,
+a.button:hover,
+a.btn:hover,
+a[class*="button"]:hover,
+a[class*="btn"]:hover {
+  text-decoration: none !important;
+}
+
+/* 5. Specific button-like classes (for existing codebase compatibility) */
+.legal-nav-link,
+.app-store-btn,
+.play-button,
+.video-control-btn {
+  text-decoration: none !important;
+}
+
+.legal-nav-link:hover,
+.app-store-btn:hover,
+.play-button:hover,
+.video-control-btn:hover {
+  text-decoration: none !important;
 }
 
 button {

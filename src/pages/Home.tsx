@@ -147,7 +147,7 @@ const Home: React.FC = () => {
             </div>
             <div className="operator-screenshots">
               <img src="/assets/images/operator1.jpg" alt="Parallel Operator Portal Screenshot 1" />
-              <img src="/assets/images/operator.jpg" alt="Parallel Operator Portal Screenshot 2" />
+              {/* <img src="/assets/images/operator.jpg" alt="Parallel Operator Portal Screenshot 2" /> */}
             </div>
             <div className="home-highlight">
               <p>
@@ -155,7 +155,7 @@ const Home: React.FC = () => {
                 <a href="https://operator.parkwithparallel.com" className="home-link">operator.parkwithparallel.com</a>
               </p>
             </div>
-            
+
             <div className="operator-tutorials">
               <h3 className="tutorials-title">Operator Tutorials</h3>
               <p className="tutorials-description">
@@ -197,7 +197,7 @@ const Home: React.FC = () => {
           </div>
         </section>
       </div>
-      
+
       {currentVideo && (
         <YoutubeVideoModal
           isOpen={modalOpen}
