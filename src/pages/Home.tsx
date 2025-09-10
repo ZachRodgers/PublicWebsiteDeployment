@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react';
 import './Home.css';
+import LoadingLogo from '../components/LoadingLogo';
 
 const Home: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(true);
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const togglePlayPause = () => {
@@ -16,11 +18,24 @@ const Home: React.FC = () => {
     }
   };
 
+  const handleVideoLoad = () => {
+    setIsVideoLoading(false);
+  };
+
+  const handleVideoError = () => {
+    setIsVideoLoading(false);
+  };
+
   return (
     <div className="home-page-container">
       <div className="home-content">
         <div id="home" className="hero-video-wrapper">
           <div className="hero-video-container">
+            {isVideoLoading && (
+              <div className="video-loading-overlay">
+                <LoadingLogo text="Loading video..." />
+              </div>
+            )}
             <video
               ref={videoRef}
               className="hero-video"
@@ -29,6 +44,9 @@ const Home: React.FC = () => {
               loop
               playsInline
               poster="/assets/images/app1.jpg"
+              onLoadedData={handleVideoLoad}
+              onError={handleVideoError}
+              style={{ opacity: isVideoLoading ? 0 : 1 }}
             >
               <source src="/assets/hero/herovideo.mp4" type="video/mp4" />
               Your browser does not support the video tag.
@@ -37,6 +55,7 @@ const Home: React.FC = () => {
               className="video-control-btn"
               onClick={togglePlayPause}
               aria-label={isPlaying ? "Pause video" : "Play video"}
+              style={{ opacity: isVideoLoading ? 0 : 1 }}
             >
               {isPlaying ? (
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
