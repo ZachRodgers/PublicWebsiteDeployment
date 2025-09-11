@@ -82,7 +82,7 @@ const Legal: React.FC = () => {
                 </p>
               </div>
             </div>
-            <div className="legal-highlight">
+            <div className="legal-alert-highlight">
               <p>
                 <strong>Data Deletion:</strong> Users may delete their account and associated data directly through the mobile app (requires sign in).
               </p>
