@@ -9,21 +9,26 @@ const Home: React.FC = () => {
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [currentVideo, setCurrentVideo] = useState<{ id: string; title: string } | null>(null);
+  const [deviceType, setDeviceType] = useState<'ios' | 'android' | 'desktop'>('desktop');
+  const [showAppScrollArrow, setShowAppScrollArrow] = useState(false);
+  const [showTutorialScrollArrow, setShowTutorialScrollArrow] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const appScreenshotsRef = useRef<HTMLDivElement>(null);
+  const tutorialThumbnailsRef = useRef<HTMLDivElement>(null);
   const { scrollToSection } = useScrollToSection();
 
   // Handle navigation from other pages
   useEffect(() => {
     const sectionToScroll = sessionStorage.getItem('scrollToSection');
     const scrollToTutorials = sessionStorage.getItem('scrollToTutorials');
-    
+
     if (sectionToScroll) {
       // Clear the stored section
       sessionStorage.removeItem('scrollToSection');
       // Wait for the page to be fully rendered, then scroll
       setTimeout(() => {
         scrollToSection(sectionToScroll);
-        
+
         // If we need to scroll to tutorials, do that after scrolling to operator portal
         if (scrollToTutorials) {
           sessionStorage.removeItem('scrollToTutorials');
@@ -37,6 +42,45 @@ const Home: React.FC = () => {
       }, 200);
     }
   }, [scrollToSection]);
+
+  // Detect device type
+  useEffect(() => {
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (/iphone|ipad|ipod/.test(userAgent)) {
+      setDeviceType('ios');
+    } else if (/android/.test(userAgent)) {
+      setDeviceType('android');
+    } else {
+      setDeviceType('desktop');
+    }
+  }, []);
+
+  // Check if scroll arrows should be shown
+  useEffect(() => {
+    const checkScrollArrows = () => {
+      if (appScreenshotsRef.current) {
+        const { scrollWidth, clientWidth } = appScreenshotsRef.current;
+        setShowAppScrollArrow(scrollWidth > clientWidth);
+      }
+      if (tutorialThumbnailsRef.current) {
+        const { scrollWidth, clientWidth } = tutorialThumbnailsRef.current;
+        setShowTutorialScrollArrow(scrollWidth > clientWidth);
+      }
+    };
+
+    checkScrollArrows();
+    window.addEventListener('resize', checkScrollArrows);
+    return () => window.removeEventListener('resize', checkScrollArrows);
+  }, []);
+
+  const scrollToEnd = (ref: React.RefObject<HTMLDivElement>) => {
+    if (ref.current) {
+      ref.current.scrollTo({
+        left: ref.current.scrollWidth,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -119,23 +163,60 @@ const Home: React.FC = () => {
               Download the Parallel mobile app to manage your parking experience with ease and convenience.
             </p>
             <div className="app-buttons">
-              <a href="https://apps.apple.com/app/parkwithparallel" className="app-store-btn" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/app_ios_download.svg" alt="Download on the App Store" />
-              </a>
-              <a href="https://play.google.com/store/apps/details?id=com.parkwithparallel" className="app-store-btn" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/app_android_download.svg" alt="Get it on Google Play" />
-              </a>
-              <a href="https://pay.parkwithparallel.com" className="app-store-btn" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/app_web.svg" alt="Use on Web" />
-              </a>
+              {deviceType === 'ios' && (
+                <>
+                  <a href="https://apps.apple.com/app/parkwithparallel" className="app-store-btn" target="_blank" rel="noopener noreferrer">
+                    <img src="/assets/app_ios_download.svg" alt="Download on the App Store" />
+                  </a>
+                  <a href="https://pay.parkwithparallel.com" className="app-store-btn" target="_blank" rel="noopener noreferrer">
+                    <img src="/assets/app_web.svg" alt="Use on Web" />
+                  </a>
+                </>
+              )}
+              {deviceType === 'android' && (
+                <>
+                  <a href="https://play.google.com/store/apps/details?id=com.parkwithparallel" className="app-store-btn" target="_blank" rel="noopener noreferrer">
+                    <img src="/assets/app_android_download.svg" alt="Get it on Google Play" />
+                  </a>
+                  <a href="https://pay.parkwithparallel.com" className="app-store-btn" target="_blank" rel="noopener noreferrer">
+                    <img src="/assets/app_web.svg" alt="Use on Web" />
+                  </a>
+                </>
+              )}
+              {deviceType === 'desktop' && (
+                <>
+                  <a href="https://apps.apple.com/app/parkwithparallel" className="app-store-btn" target="_blank" rel="noopener noreferrer">
+                    <img src="/assets/app_ios_download.svg" alt="Download on the App Store" />
+                  </a>
+                  <a href="https://play.google.com/store/apps/details?id=com.parkwithparallel" className="app-store-btn" target="_blank" rel="noopener noreferrer">
+                    <img src="/assets/app_android_download.svg" alt="Get it on Google Play" />
+                  </a>
+                  <a href="https://pay.parkwithparallel.com" className="app-store-btn" target="_blank" rel="noopener noreferrer">
+                    <img src="/assets/app_web.svg" alt="Use on Web" />
+                  </a>
+                </>
+              )}
             </div>
-            <div className="app-screenshots">
-              <img src="/assets/images/app1.jpg" alt="Parallel App Screenshot 1" />
-              <img src="/assets/images/app2.jpg" alt="Parallel App Screenshot 2" />
-              <img src="/assets/images/app3.jpg" alt="Parallel App Screenshot 3" />
-              <img src="/assets/images/app4.jpg" alt="Parallel App Screenshot 4" />
-              <img src="/assets/images/app5.jpg" alt="Parallel App Screenshot 5" />
-              <img src="/assets/images/app6.jpg" alt="Parallel App Screenshot 6" />
+            <div className="app-screenshots-container">
+              <div className="app-screenshots" ref={appScreenshotsRef}>
+                <img src="/assets/images/app1.jpg" alt="Parallel App Screenshot 1" />
+                <img src="/assets/images/app2.jpg" alt="Parallel App Screenshot 2" />
+                <img src="/assets/images/app3.jpg" alt="Parallel App Screenshot 3" />
+                <img src="/assets/images/app4.jpg" alt="Parallel App Screenshot 4" />
+                <img src="/assets/images/app5.jpg" alt="Parallel App Screenshot 5" />
+                <img src="/assets/images/app6.jpg" alt="Parallel App Screenshot 6" />
+              </div>
+              {showAppScrollArrow && (
+                <button
+                  className="scroll-arrow scroll-arrow-right"
+                  onClick={() => scrollToEnd(appScreenshotsRef)}
+                  aria-label="Scroll to see more screenshots"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              )}
             </div>
           </div>
         </section>
@@ -174,37 +255,50 @@ const Home: React.FC = () => {
               <p className="tutorials-description">
                 Tutorials on features of the operator portal and how to use them. Please note more tutorials are available within the web app itself.
               </p>
-              <div className="tutorial-thumbnails">
-                <div className="tutorial-thumbnail" onClick={() => openVideoModal('V2lEswZgZEw', 'Dashboard Tutorial')}>
-                  <img src="/assets/images/tutorial_thumnail_dashboard.jpg" alt="Dashboard Tutorial" />
-                  <div className="play-button-overlay">
-                    <button className="play-button" aria-label="Play Dashboard Tutorial">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 5v14l11-7z" fill="white" />
-                      </svg>
-                    </button>
+              <div className="tutorial-thumbnails-container">
+                <div className="tutorial-thumbnails" ref={tutorialThumbnailsRef}>
+                  <div className="tutorial-thumbnail" onClick={() => openVideoModal('V2lEswZgZEw', 'Dashboard Tutorial')}>
+                    <img src="/assets/images/tutorial_thumnail_dashboard.jpg" alt="Dashboard Tutorial" />
+                    <div className="play-button-overlay">
+                      <button className="play-button" aria-label="Play Dashboard Tutorial">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 5v14l11-7z" fill="white" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="tutorial-thumbnail" onClick={() => openVideoModal('D4K5Z3psYAI', 'Registry Tutorial')}>
+                    <img src="/assets/images/tutorial_thumnail_registry.jpg" alt="Registry Tutorial" />
+                    <div className="play-button-overlay">
+                      <button className="play-button" aria-label="Play Registry Tutorial">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 5v14l11-7z" fill="white" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="tutorial-thumbnail" onClick={() => openVideoModal('HoAepPFQdG8', 'Advanced Settings Tutorial')}>
+                    <img src="/assets/images/tutorial_thumnail_advanced.jpg" alt="Advanced Settings Tutorial" />
+                    <div className="play-button-overlay">
+                      <button className="play-button" aria-label="Play Advanced Settings Tutorial">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 5v14l11-7z" fill="white" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <div className="tutorial-thumbnail" onClick={() => openVideoModal('D4K5Z3psYAI', 'Registry Tutorial')}>
-                  <img src="/assets/images/tutorial_thumnail_registry.jpg" alt="Registry Tutorial" />
-                  <div className="play-button-overlay">
-                    <button className="play-button" aria-label="Play Registry Tutorial">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 5v14l11-7z" fill="white" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <div className="tutorial-thumbnail" onClick={() => openVideoModal('HoAepPFQdG8', 'Advanced Settings Tutorial')}>
-                  <img src="/assets/images/tutorial_thumnail_advanced.jpg" alt="Advanced Settings Tutorial" />
-                  <div className="play-button-overlay">
-                    <button className="play-button" aria-label="Play Advanced Settings Tutorial">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 5v14l11-7z" fill="white" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
+                {showTutorialScrollArrow && (
+                  <button
+                    className="scroll-arrow scroll-arrow-right"
+                    onClick={() => scrollToEnd(tutorialThumbnailsRef)}
+                    aria-label="Scroll to see more tutorials"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                )}
               </div>
             </div>
           </div>
