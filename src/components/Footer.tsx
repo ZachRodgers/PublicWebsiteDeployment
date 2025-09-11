@@ -13,8 +13,8 @@ const Footer: React.FC<FooterProps> = ({ isSidebarCollapsed = false }) => {
   const { scrollToSection } = useScrollToSection();
 
   const handlePrivacySettings = () => {
-    // TODO: Implement privacy settings modal
-    console.log('Privacy settings clicked');
+    localStorage.removeItem('cookieConsent');
+    window.location.reload();
   };
 
   const handleNewsletter = () => {

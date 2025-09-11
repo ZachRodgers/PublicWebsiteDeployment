@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
+import CookieConsent from './components/CookieConsent';
 import Home from './pages/Home';
 import Legal from './pages/Legal';
 import TermsOfService_App from './pages/TermsOfService_App';
@@ -34,6 +35,7 @@ function AppComponent() {
           </main>
           <Footer isSidebarCollapsed={isSidebarCollapsed} />
         </div>
+        <CookieConsent />
       </div>
     </Router>
   );
