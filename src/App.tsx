@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Legal from './pages/Legal';
 import TermsOfService_App from './pages/TermsOfService_App';
@@ -18,18 +19,21 @@ function AppComponent() {
     <Router>
       <div className="app">
         <Sidebar onToggle={(collapsed) => setIsSidebarCollapsed(collapsed)} />
-        <main className={`main-content ${isSidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/legal" element={<Legal />} />
-            <Route path="/legal/app/terms-of-service" element={<TermsOfService_App />} />
-            <Route path="/legal/app/privacy-policy" element={<PrivacyPolicy_App />} />
-            <Route path="/legal/operator/terms-of-service" element={<TermsOfService_Operator />} />
-            <Route path="/legal/operator/privacy-policy" element={<PrivacyPolicy_Operator />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/careers" element={<Careers />} />
-          </Routes>
-        </main>
+        <div className={`main-content ${isSidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
+          <main className="main-content-inner">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/legal" element={<Legal />} />
+              <Route path="/legal/app/terms-of-service" element={<TermsOfService_App />} />
+              <Route path="/legal/app/privacy-policy" element={<PrivacyPolicy_App />} />
+              <Route path="/legal/operator/terms-of-service" element={<TermsOfService_Operator />} />
+              <Route path="/legal/operator/privacy-policy" element={<PrivacyPolicy_Operator />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/careers" element={<Careers />} />
+            </Routes>
+          </main>
+          <Footer isSidebarCollapsed={isSidebarCollapsed} />
+        </div>
       </div>
     </Router>
   );

@@ -119,7 +119,7 @@ p:last-child {
 /* Universal Link System - Clean Architecture */
 
 /* 1. Base link styles - all links start clean */
-a:not(.sidebar-link) {
+a:not(.sidebar-link):not(.footer-link) {
   color: var(--color-primary);
   text-decoration: none;
   font-weight: 500;
@@ -127,12 +127,12 @@ a:not(.sidebar-link) {
 }
 
 /* 2. Interactive links get underlines on hover (default behavior) */
-a:not(.sidebar-link):hover {
+a:not(.sidebar-link):not(.footer-link):hover {
   color: var(--color-primary-hover);
   text-decoration: underline;
 }
 
-a:not(.sidebar-link):focus {
+a:not(.sidebar-link):not(.footer-link):focus {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
@@ -150,6 +150,17 @@ a:not(.sidebar-link):focus {
 }
 
 .sidebar-link:focus {
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+/* Footer links have their own styling - no focus outlines */
+.footer-link {
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+.footer-link:focus {
   text-decoration: none !important;
   outline: none !important;
 }
@@ -215,10 +226,19 @@ button {
   flex: 1;
   margin-left: 200px;
   transition: margin-left var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .main-content.sidebar-collapsed {
   margin-left: 0px;
+}
+
+.main-content-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 768px) {

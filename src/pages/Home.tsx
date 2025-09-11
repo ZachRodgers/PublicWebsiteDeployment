@@ -15,12 +15,25 @@ const Home: React.FC = () => {
   // Handle navigation from other pages
   useEffect(() => {
     const sectionToScroll = sessionStorage.getItem('scrollToSection');
+    const scrollToTutorials = sessionStorage.getItem('scrollToTutorials');
+    
     if (sectionToScroll) {
       // Clear the stored section
       sessionStorage.removeItem('scrollToSection');
       // Wait for the page to be fully rendered, then scroll
       setTimeout(() => {
         scrollToSection(sectionToScroll);
+        
+        // If we need to scroll to tutorials, do that after scrolling to operator portal
+        if (scrollToTutorials) {
+          sessionStorage.removeItem('scrollToTutorials');
+          setTimeout(() => {
+            const tutorialsSection = document.querySelector('.operator-tutorials');
+            if (tutorialsSection) {
+              tutorialsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 500);
+        }
       }, 200);
     }
   }, [scrollToSection]);
