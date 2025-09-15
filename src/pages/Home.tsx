@@ -165,7 +165,7 @@ const Home: React.FC = () => {
             <div className="app-buttons">
               {deviceType === 'ios' && (
                 <>
-                  <a href="https://apps.apple.com/app/parkwithparallel" className="app-store-btn" target="_blank" rel="noopener noreferrer">
+                  <a href="https://apps.apple.com/ca/app/parallel-mobile/id6751863179" className="app-store-btn" target="_blank" rel="noopener noreferrer">
                     <img src="/assets/app_ios_download.svg" alt="Download on the App Store" />
                   </a>
                   <a href="https://pay.parkwithparallel.com" className="app-store-btn" target="_blank" rel="noopener noreferrer">
@@ -185,7 +185,7 @@ const Home: React.FC = () => {
               )}
               {deviceType === 'desktop' && (
                 <>
-                  <a href="https://apps.apple.com/app/parkwithparallel" className="app-store-btn" target="_blank" rel="noopener noreferrer">
+                  <a href="https://apps.apple.com/ca/app/parallel-mobile/id6751863179" className="app-store-btn" target="_blank" rel="noopener noreferrer">
                     <img src="/assets/app_ios_download.svg" alt="Download on the App Store" />
                   </a>
                   <a href="https://play.google.com/store/apps/details?id=com.parkwithparallel" className="app-store-btn" target="_blank" rel="noopener noreferrer">

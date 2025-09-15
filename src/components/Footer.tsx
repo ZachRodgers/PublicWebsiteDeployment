@@ -115,7 +115,7 @@ const Footer: React.FC<FooterProps> = ({ isSidebarCollapsed = false }) => {
           <h4 className="footer-section-title">Products</h4>
           <div className="footer-links">
             <a href="https://pay.parkwithparallel.com" className="footer-link" target="_blank" rel="noopener noreferrer">Web App</a>
-            <a href="https://apps.apple.com/app/parkwithparallel" className="footer-link" target="_blank" rel="noopener noreferrer">iOS App</a>
+            <a href="https://apps.apple.com/ca/app/parallel-mobile/id6751863179" className="footer-link" target="_blank" rel="noopener noreferrer">iOS App</a>
             <a href="https://play.google.com/store/apps/details?id=com.parkwithparallel" className="footer-link" target="_blank" rel="noopener noreferrer">Android App</a>
             <a href="https://operator.parkwithparallel.com" className="footer-link" target="_blank" rel="noopener noreferrer">Operator Portal</a>
             <button className="footer-link" onClick={handleTutorialsClick}>Tutorials</button>
