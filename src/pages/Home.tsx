@@ -159,6 +159,9 @@ const Home: React.FC = () => {
         <section className="home-section" id="mobile-app">
           <h2 className="home-section-title">Mobile App</h2>
           <div className="home-section-content">
+            <div className="app-hero-image">
+              <img src="/assets/images/apphero.jpg" alt="Parallel App Hero" />
+            </div>
             <p>
               Download the Parallel mobile app to manage your parking experience with ease and convenience.
             </p>

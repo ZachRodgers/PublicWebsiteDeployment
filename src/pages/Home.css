@@ -176,6 +176,18 @@
   transition: transform var(--transition-fast);
 }
 
+.app-hero-image {
+  margin: var(--spacing-xl) 0;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+}
+
+.app-hero-image img {
+  width: 100%;
+  height: auto;
+}
+
 .app-screenshots {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -366,6 +378,10 @@
     width: auto !important;
     max-width: 100% !important;
     min-width: 120px !important;
+  }
+
+  .app-hero-image {
+    margin: var(--spacing-lg) 0;
   }
 
   .app-screenshots-container {
