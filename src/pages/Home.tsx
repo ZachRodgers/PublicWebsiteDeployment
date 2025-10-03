@@ -113,51 +113,52 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="home-page-container">
-      <div className="home-content">
-        <div id="home" className="hero-video-wrapper">
-          <div className="hero-video-container">
-            {isVideoLoading && (
-              <div className="video-loading-overlay">
-                <LoadingLogo text="Loading video..." />
-              </div>
+    <div className="home-page">
+      <section id="home" className="hero-video-wrapper">
+        <div className="hero-video-container">
+          {isVideoLoading && (
+            <div className="video-loading-overlay">
+              <LoadingLogo text="Loading video..." />
+            </div>
+          )}
+          <video
+            ref={videoRef}
+            className="hero-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/assets/images/app1.jpg"
+            onLoadedData={handleVideoLoad}
+            onError={handleVideoError}
+            style={{ opacity: isVideoLoading ? 0 : 1 }}
+          >
+            <source src="/assets/hero/herovideo.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <button
+            className="video-control-btn"
+            onClick={togglePlayPause}
+            aria-label={isPlaying ? "Pause video" : "Play video"}
+            style={{ opacity: isVideoLoading ? 0 : 1 }}
+          >
+            {isPlaying ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6" y="4" width="4" height="16" fill="white" />
+                <rect x="14" y="4" width="4" height="16" fill="white" />
+              </svg>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5v14l11-7z" fill="white" />
+              </svg>
             )}
-            <video
-              ref={videoRef}
-              className="hero-video"
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster="/assets/images/app1.jpg"
-              onLoadedData={handleVideoLoad}
-              onError={handleVideoError}
-              style={{ opacity: isVideoLoading ? 0 : 1 }}
-            >
-              <source src="/assets/hero/herovideo.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <button
-              className="video-control-btn"
-              onClick={togglePlayPause}
-              aria-label={isPlaying ? "Pause video" : "Play video"}
-              style={{ opacity: isVideoLoading ? 0 : 1 }}
-            >
-              {isPlaying ? (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="6" y="4" width="4" height="16" fill="white" />
-                  <rect x="14" y="4" width="4" height="16" fill="white" />
-                </svg>
-              ) : (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 5v14l11-7z" fill="white" />
-                </svg>
-              )}
-            </button>
-          </div>
+          </button>
         </div>
+      </section>
 
-        <FeaturesShowcase />
+      <div className="home-page-container">
+        <div className="home-content">
+          <FeaturesShowcase />
 
         <section className="home-section" id="mobile-app">
           <h2 className="home-section-title">Mobile App</h2>
@@ -309,6 +310,8 @@ const Home: React.FC = () => {
             </div>
           </div>
         </section>
+      </div>
+
       </div>
 
       {currentVideo && (

@@ -40,6 +40,8 @@ const FeaturesShowcase: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const trackerRefs = useRef<Record<string, HTMLElement | null>>({});
   const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const topBoundaryRef = useRef<HTMLDivElement | null>(null);
+  const bottomBoundaryRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -99,6 +101,29 @@ const FeaturesShowcase: React.FC = () => {
 
     const observer = new IntersectionObserver(
       (entries) => {
+        const topBoundary = topBoundaryRef.current;
+        const bottomBoundary = bottomBoundaryRef.current;
+
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+
+          if (topBoundary && entry.target === topBoundary) {
+            const firstId = featureList[0]?.id;
+            if (firstId && firstId !== activeId) {
+              setActiveId(firstId);
+            }
+            return;
+          }
+
+          if (bottomBoundary && entry.target === bottomBoundary) {
+            const lastId = featureList[featureList.length - 1]?.id;
+            if (lastId && lastId !== activeId) {
+              setActiveId(lastId);
+            }
+            return;
+          }
+        }
+
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
@@ -122,6 +147,17 @@ const FeaturesShowcase: React.FC = () => {
         observer.observe(element);
       }
     });
+
+    const topBoundary = topBoundaryRef.current;
+    const bottomBoundary = bottomBoundaryRef.current;
+
+    if (topBoundary) {
+      observer.observe(topBoundary);
+    }
+
+    if (bottomBoundary) {
+      observer.observe(bottomBoundary);
+    }
 
     return () => {
       observer.disconnect();
@@ -177,6 +213,7 @@ const FeaturesShowcase: React.FC = () => {
     <section id="features" className="features-section-wrapper">
       <div className="features-section">
         <div ref={sentinelRef} className="features-nav-sentinel" aria-hidden="true" />
+        <h2 className="home-section-title">What we offer:</h2>
         <div className="features-layout">
           {!isMobile && (
             <aside className={`features-nav ${navAffixed ? 'is-sticky' : ''}`}>
@@ -199,6 +236,7 @@ const FeaturesShowcase: React.FC = () => {
                       </button>
                     );
                   })}
+
                 </div>
                 <div className="features-nav-divider" aria-hidden="true" />
                 <button type="button" className="features-nav-item features-skip" onClick={handleSkipSection}>
@@ -243,6 +281,10 @@ const FeaturesShowcase: React.FC = () => {
             ) : (
               <>
                 <div className="features-scroll-track" aria-hidden="true">
+                  <div
+                    ref={topBoundaryRef}
+                    className="feature-boundary feature-boundary-top"
+                  />
                   {featureList.map((feature, index) => (
                     <div
                       key={`${feature.id}-trigger`}
@@ -259,6 +301,10 @@ const FeaturesShowcase: React.FC = () => {
                       }`}
                     />
                   ))}
+                  <div
+                    ref={bottomBoundaryRef}
+                    className="feature-boundary feature-boundary-bottom"
+                  />
                 </div>
                 <div className="features-active-panel">
                   {featureList.map((feature) => (

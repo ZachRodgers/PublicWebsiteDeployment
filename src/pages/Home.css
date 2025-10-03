@@ -1,5 +1,10 @@
 /* Home Page Specific Styles */
 
+.home-page {
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
 .home-page-container {
   max-width: 920px;
   margin: 0 auto;
@@ -71,18 +76,16 @@
 
 .hero-video-wrapper {
   width: 100%;
-  margin: var(--spacing-xl) 0;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  padding: 0 var(--spacing-xl);
+  margin: var(--spacing-xl) auto;
+  padding: 0 var(--spacing-lg);
   box-sizing: border-box;
 }
 
 .hero-video-container {
   position: relative;
   width: 100%;
-  max-width: 1080px;
+  max-width: 1200px;
+  margin: 0 auto;
   border-radius: var(--radius-xl);
   overflow: hidden;
 }
@@ -309,9 +312,6 @@
   }
 
   .hero-video-wrapper {
-    width: 100%;
-    left: 0;
-    transform: none;
     padding: 0 var(--spacing-sm);
   }
 
@@ -533,9 +533,6 @@
   }
 
   .hero-video-wrapper {
-    width: 100%;
-    left: 0;
-    transform: none;
     padding: 0 var(--spacing-xs);
   }
 
