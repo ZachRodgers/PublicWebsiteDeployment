@@ -31,11 +31,14 @@ const iconComponents: Record<string, React.ComponentType<{ className?: string }>
   'triangle-alert': TriangleAlert
 };
 
+const MOBILE_BREAKPOINT = 768;
+
 const FeaturesShowcase: React.FC = () => {
   const [features, setFeatures] = useState<Feature[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [navAffixed, setNavAffixed] = useState(false);
-  const featureRefs = useRef<Record<string, HTMLElement | null>>({});
+  const [isMobile, setIsMobile] = useState(false);
+  const trackerRefs = useRef<Record<string, HTMLElement | null>>({});
   const sentinelRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -70,7 +73,27 @@ const FeaturesShowcase: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!features.length) {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const featureList = useMemo(() => features, [features]);
+
+  useEffect(() => {
+    Object.keys(trackerRefs.current).forEach((key) => {
+      if (!featureList.some((feature) => feature.id === key)) {
+        delete trackerRefs.current[key];
+      }
+    });
+  }, [featureList]);
+
+  useEffect(() => {
+    if (!featureList.length) {
       return;
     }
 
@@ -82,19 +105,19 @@ const FeaturesShowcase: React.FC = () => {
 
         if (visible.length > 0) {
           const id = visible[0].target.getAttribute('data-feature-id');
-          if (id && id !== activeId) {
+          if (id && (isMobile || id !== activeId)) {
             setActiveId(id);
           }
         }
       },
       {
         root: null,
-        threshold: [0.45, 0.65, 0.85]
+        threshold: isMobile ? [0.3, 0.45] : [0.35]
       }
     );
 
-    features.forEach((feature) => {
-      const element = featureRefs.current[feature.id];
+    featureList.forEach((feature) => {
+      const element = trackerRefs.current[feature.id];
       if (element) {
         observer.observe(element);
       }
@@ -103,11 +126,12 @@ const FeaturesShowcase: React.FC = () => {
     return () => {
       observer.disconnect();
     };
-  }, [features, activeId]);
+  }, [featureList, activeId, isMobile]);
 
   useEffect(() => {
     const sentinel = sentinelRef.current;
-    if (!sentinel) {
+    if (!sentinel || isMobile) {
+      setNavAffixed(false);
       return;
     }
 
@@ -123,14 +147,12 @@ const FeaturesShowcase: React.FC = () => {
     return () => {
       observer.disconnect();
     };
-  }, []);
-
-  const featureList = useMemo(() => features, [features]);
+  }, [isMobile]);
 
   const handleNavClick = (featureId: string) => {
-    const featureElement = featureRefs.current[featureId];
-    if (featureElement) {
-      featureElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const element = trackerRefs.current[featureId];
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
       setActiveId(featureId);
     }
   };
@@ -156,61 +178,110 @@ const FeaturesShowcase: React.FC = () => {
       <div className="features-section">
         <div ref={sentinelRef} className="features-nav-sentinel" aria-hidden="true" />
         <div className="features-layout">
-          <aside className={`features-nav ${navAffixed ? 'is-sticky' : ''}`}>
-            <div className="features-nav-rail">
-              <div className="features-nav-items">
-                {featureList.map((feature) => {
-                  const Icon = iconComponents[feature.icon];
-                  const isActive = feature.id === activeId;
+          {!isMobile && (
+            <aside className={`features-nav ${navAffixed ? 'is-sticky' : ''}`}>
+              <div className="features-nav-rail">
+                <div className="features-nav-items">
+                  {featureList.map((feature) => {
+                    const Icon = iconComponents[feature.icon];
+                    const isActive = feature.id === activeId;
 
-                  return (
-                    <button
-                      key={feature.id}
-                      type="button"
-                      onClick={() => handleNavClick(feature.id)}
-                      className={`features-nav-item ${isActive ? 'is-active' : ''}`}
-                      aria-current={isActive ? 'true' : undefined}
-                    >
-                      <span className="features-nav-icon">{Icon && <Icon />}</span>
-                      <span className="features-nav-label">{feature.title}</span>
-                    </button>
-                  );
-                })}
+                    return (
+                      <button
+                        key={feature.id}
+                        type="button"
+                        onClick={() => handleNavClick(feature.id)}
+                        className={`features-nav-item ${isActive ? 'is-active' : ''}`}
+                        aria-current={isActive ? 'true' : undefined}
+                      >
+                        <span className="features-nav-icon">{Icon && <Icon />}</span>
+                        <span className="features-nav-label">{feature.title}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+                <div className="features-nav-divider" aria-hidden="true" />
+                <button type="button" className="features-nav-item features-skip" onClick={handleSkipSection}>
+                  <span className="features-nav-icon">
+                    <ChevronLast />
+                  </span>
+                  <span className="features-nav-label">Skip Section</span>
+                </button>
               </div>
-              <div className="features-nav-divider" aria-hidden="true" />
-              <button type="button" className="features-nav-item features-skip" onClick={handleSkipSection}>
-                <span className="features-nav-icon">
-                  <ChevronLast />
-                </span>
-                <span className="features-nav-label">Skip Section</span>
-              </button>
-            </div>
-          </aside>
+            </aside>
+          )}
 
-          <div className="features-content">
-            {featureList.map((feature) => (
-              <article
-                key={feature.id}
-                ref={(element) => {
-                  featureRefs.current[feature.id] = element;
-                }}
-                id={`feature-${feature.id}`}
-                data-feature-id={feature.id}
-                className="feature-panel"
-              >
-                <div className="feature-media">
-                  <img
-                    src={`/assets/features/${feature.image}`}
-                    alt={feature.title}
-                    loading="lazy"
-                  />
+          <div className={`features-content ${isMobile ? 'is-mobile' : 'is-desktop'}`}>
+            {isMobile ? (
+              featureList.map((feature) => (
+                <article
+                  key={feature.id}
+                  ref={(element) => {
+                    if (element) {
+                      trackerRefs.current[feature.id] = element;
+                    } else {
+                      delete trackerRefs.current[feature.id];
+                    }
+                  }}
+                  id={`feature-${feature.id}`}
+                  data-feature-id={feature.id}
+                  className="feature-panel"
+                >
+                  <div className="feature-media">
+                    <img
+                      src={`/assets/features/${feature.image}`}
+                      alt={feature.title}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="feature-copy">
+                    <h2>{feature.title}</h2>
+                    <p>{feature.description}</p>
+                  </div>
+                </article>
+              ))
+            ) : (
+              <>
+                <div className="features-scroll-track" aria-hidden="true">
+                  {featureList.map((feature, index) => (
+                    <div
+                      key={`${feature.id}-trigger`}
+                      ref={(element) => {
+                        if (element) {
+                          trackerRefs.current[feature.id] = element;
+                        } else {
+                          delete trackerRefs.current[feature.id];
+                        }
+                      }}
+                      data-feature-id={feature.id}
+                      className={`feature-trigger ${
+                        index === 0 ? 'is-first' : index === featureList.length - 1 ? 'is-last' : ''
+                      }`}
+                    />
+                  ))}
                 </div>
-                <div className="feature-copy">
-                  <h2>{feature.title}</h2>
-                  <p>{feature.description}</p>
+                <div className="features-active-panel">
+                  {featureList.map((feature) => (
+                    <article
+                      key={feature.id}
+                      className={`feature-panel ${feature.id === activeId ? 'is-active' : ''}`}
+                    >
+                      <div className="feature-media">
+                        <img
+                          src={`/assets/features/${feature.image}`}
+                          alt={feature.title}
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="feature-copy">
+                        <h2>{feature.title}</h2>
+                        <p>{feature.description}</p>
+                      </div>
+                    </article>
+                  ))}
                 </div>
-              </article>
-            ))}
+              </>
+            )}
           </div>
         </div>
       </div>
