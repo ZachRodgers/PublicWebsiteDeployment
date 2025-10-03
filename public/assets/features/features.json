@@ -11,14 +11,14 @@
       "id": "2",
       "title": "Live Data",
       "icon": "chart-no-axes-combined",
-      "image": "image5.jpg",
+      "image": "image2.jpg",
       "description": "Parallel turns parking activity into actionable insights in real time. Operators get a live revenue dashboard and a full analytics suite with downloadable reports and summaries—clear data that drives smarter decisions."
     },
     {
       "id": "3",
       "title": "Operator Settings",
       "icon": "monitor-cog",
-      "image": "image2.jpg",
+      "image": "image3.jpg",
       "description": "Our Operator Portal puts advanced control in one place. From permit management and validation to real-time notifications, every feature is designed for simplicity and precision. Operators can fine-tune settings instantly, keeping parking efficient and easy to manage at scale."
     },
     {
@@ -32,7 +32,7 @@
       "id": "5",
       "title": "Payments",
       "icon": "wallet-cards",
-      "image": "image3.jpg",
+      "image": "image5.jpg",
       "description": "Parallel makes paying for parking seamless. Drivers can start sessions instantly with a Lot ID or QR code, while operators receive secure, automated payments without added complexity."
     },
     {
