@@ -1,0 +1,39 @@
+{
+  "members": [
+    {
+      "id": "zach",
+      "image": "zach.jpg",
+      "name": "Zach Rodgers",
+      "role": "CTO & Co-Founder",
+      "description": "Zach is the co-founder of Parallel Parking Solutions Inc., leading the software team building a SaaS platform for ALPR-powered smart parking systems.",
+      "buttons": [
+        {
+          "buttonText": "LinkedIn",
+          "buttonLink": "https://linkedin.com/in/zachrodgers1000",
+          "buttonIcon": "Linkedin",
+          "textColor": "#ffffff",
+          "buttonColor": "#0077b5"
+        },
+        {
+          "buttonText": "Email",
+          "buttonLink": "mailto:zachary.w.rodgers@gmail.com",
+          "buttonIcon": "Mail"
+        }
+      ]
+    },
+    {
+      "id": "ary",
+      "image": "",
+      "name": "Aryaman Harlalka",
+      "role": "CEO & Co-Founder",
+      "description": "",
+      "buttons": [
+        {
+          "buttonText": "Email",
+          "buttonLink": "mailto:info@parkwithparallel.com",
+          "buttonIcon": "Mail"
+        }
+      ]
+    }
+  ]
+}

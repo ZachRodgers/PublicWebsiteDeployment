@@ -1,0 +1,126 @@
+.team-member-container {
+  margin: var(--spacing-2xl) auto;
+  max-width: 960px;
+  min-width: 400px;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.team-member-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  width: 100%;
+}
+
+.team-member-image {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 1000px;
+  border: 2px solid var(--color-border-light);
+  background: var(--color-background-secondary);
+}
+
+.team-member-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  min-width: 0;
+}
+
+.team-member-name {
+  font-size: var(--font-size-4xl);
+  color: var(--color-text-primary);
+}
+
+.team-member-role {
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.team-member-description {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  width: 100%;
+}
+
+.team-member-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.team-member-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  background: var(--color-primary-light);
+  transition: all 0.2s ease;
+}
+
+.team-member-button:hover {
+  background: var(--color-primary-lighter);
+  transform: translateY(-1px);
+}
+
+.team-member-button svg {
+  flex-shrink: 0;
+}
+
+.team-member-not-found {
+  text-align: center;
+  margin-top: 80px;
+  color: var(--color-error);
+}
+
+@media (min-width: 768px) {
+  .team-member-container {
+    padding: var(--spacing-2xl);
+    gap: var(--spacing-2xl);
+  }
+
+  .team-member-profile {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--spacing-2xl);
+  }
+
+  .team-member-image {
+    flex: 1 1 30%;
+    max-width: 280px;
+  }
+
+  .team-member-details {
+    flex: 1 1 70%;
+    align-items: flex-start;
+    text-align: left;
+    gap: var(--spacing-md);
+  }
+
+  .team-member-buttons {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+   .team-member-container {
+    margin: 100px 0px;
+  }
+}

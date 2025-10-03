@@ -12,6 +12,7 @@ import PrivacyPolicy_Operator from './pages/PrivacyPolicy_Operator';
 import Contact from './pages/Contact';
 import Careers from './pages/Careers';
 import './App.css';
+import TeamMember from './pages/TeamMember';
 
 function AppComponent() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -31,6 +32,7 @@ function AppComponent() {
               <Route path="/legal/operator/privacy-policy" element={<PrivacyPolicy_Operator />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/careers" element={<Careers />} />
+              <Route path="/team/:id" element={<TeamMember />} />
             </Routes>
           </main>
           <Footer isSidebarCollapsed={isSidebarCollapsed} />
