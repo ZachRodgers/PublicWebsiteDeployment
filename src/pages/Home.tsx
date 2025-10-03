@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Home.css';
 import LoadingLogo from '../components/LoadingLogo';
 import YoutubeVideoModal from '../components/YoutubeVideoModal';
+import FeaturesShowcase from '../components/FeaturesShowcase';
 import { useScrollToSection } from '../hooks/useScrollToSection';
 
 const Home: React.FC = () => {
@@ -155,6 +156,8 @@ const Home: React.FC = () => {
             </button>
           </div>
         </div>
+
+        <FeaturesShowcase />
 
         <section className="home-section" id="mobile-app">
           <h2 className="home-section-title">Mobile App</h2>

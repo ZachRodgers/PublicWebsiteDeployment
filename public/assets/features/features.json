@@ -1,0 +1,46 @@
+{
+  "features": [
+    {
+      "id": "1",
+      "title": "Edge & Cloud",
+      "icon": "cctv",
+      "image": "image1.jpg",
+      "description": "Parallel connects edge hardware with cloud intelligence to create a seamless parking network. ALPR, AI, and built-in security power every system, reducing overhead while ensuring 100% uptime. With effortless setup and future-proof reliability, operators get technology that simply works."
+    },
+    {
+      "id": "2",
+      "title": "Live Data",
+      "icon": "chart-no-axes-combined",
+      "image": "image5.jpg",
+      "description": "Parallel turns parking activity into actionable insights in real time. Operators get a live revenue dashboard and a full analytics suite with downloadable reports and summaries—clear data that drives smarter decisions."
+    },
+    {
+      "id": "3",
+      "title": "Operator Settings",
+      "icon": "monitor-cog",
+      "image": "image2.jpg",
+      "description": "Our Operator Portal puts advanced control in one place. From permit management and validation to real-time notifications, every feature is designed for simplicity and precision. Operators can fine-tune settings instantly, keeping parking efficient and easy to manage at scale."
+    },
+    {
+      "id": "4",
+      "title": "User App",
+      "icon": "user-round-check",
+      "image": "image4.jpg",
+      "description": "Designed entirely around the driver, the Parallel app makes parking simple from the first tap. Live availability and real-time insights keep users informed, while true drive-in, drive-out access removes tickets and guesswork. In just minutes, anyone can get set up and experience a frictionless way to park, every time."
+    },
+    {
+      "id": "5",
+      "title": "Payments",
+      "icon": "wallet-cards",
+      "image": "image3.jpg",
+      "description": "Parallel makes paying for parking seamless. Drivers can start sessions instantly with a Lot ID or QR code, while operators receive secure, automated payments without added complexity."
+    },
+    {
+      "id": "6",
+      "title": "Auto Violations",
+      "icon": "triangle-alert",
+      "image": "image6.jpg",
+      "description": "Parallel automates enforcement with a complete violation system. Tickets can be created, printed, and managed directly in the portal, with a built-in dispute process for fairness. Operators can segment violators and focus effort where it matters most—targeting the top 20% who cause the majority of issues."
+    }
+  ]
+}
