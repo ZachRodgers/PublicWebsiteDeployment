@@ -23,7 +23,7 @@
     },
     {
       "id": "ary",
-      "image": "",
+      "image": "Ary.png",
       "name": "Aryaman Harlalka",
       "role": "CEO & Co-Founder",
       "description": "",
@@ -44,11 +44,25 @@
     },
     {
       "id": "julian",
-      "image": "julian.png",
+      "image": "Julian.png",
       "name": "Julian Saliby",
       "role": "COO",
       "description": "Julian drives operational strategy and execution at Parallel Parking Solutions, ensuring seamless coordination between teams and scaling the company’s impact.",
       "buttons": [
+        {
+          "buttonText": "LinkedIn",
+          "buttonLink": "https://www.linkedin.com/in/julian-saliby-126705185/?originalSubdomain=ca",
+          "buttonIcon": "Linkedin",
+          "textColor": "#ffffff",
+          "buttonColor": "#0077b5"
+        },
+        {
+          "buttonText": "Personal Website",
+          "buttonLink": "https://julesfolio.myportfolio.com/",
+          "buttonIcon": "Globe",
+          "textColor": "#ffffff",
+          "buttonColor": "#333333"
+        },
         {
           "buttonText": "Email",
           "buttonLink": "mailto:julesfolio.js@gmail.com",
