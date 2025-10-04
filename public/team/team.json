@@ -29,9 +29,32 @@
       "description": "",
       "buttons": [
         {
+          "buttonText": "LinkedIn",
+          "buttonLink": "https://www.linkedin.com/in/aryaman-harlalka-0847a9205?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+          "buttonIcon": "Linkedin",
+          "textColor": "#ffffff",
+          "buttonColor": "#0077b5"
+        },
+        {
           "buttonText": "Email",
           "buttonLink": "mailto:info@parkwithparallel.com",
           "buttonIcon": "Mail"
+        }
+      ]
+    },
+    {
+      "id": "julian",
+      "image": "julian.png",
+      "name": "Julian Saliby",
+      "role": "COO",
+      "description": "Julian drives operational strategy and execution at Parallel Parking Solutions, ensuring seamless coordination between teams and scaling the company’s impact.",
+      "buttons": [
+        {
+          "buttonText": "Email",
+          "buttonLink": "mailto:julesfolio.js@gmail.com",
+          "buttonIcon": "Mail",
+          "textColor": "#ffffff",
+          "buttonColor": "#EA4335"
         }
       ]
     }
