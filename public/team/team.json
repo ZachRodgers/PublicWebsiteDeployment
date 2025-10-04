@@ -18,15 +18,27 @@
           "buttonText": "Email",
           "buttonLink": "mailto:zachary.w.rodgers@gmail.com",
           "buttonIcon": "Mail"
+        },
+        {
+          "buttonText": "GitHub",
+          "buttonLink": "https://github.com/zachrodgers",
+          "buttonIcon": "Github",
+          "textColor": "#ffffff",
+          "buttonColor": "#24292e"
+        },
+        {
+          "buttonText": "Portfolio",
+          "buttonLink": "https://zachrodgers.ca",
+          "buttonIcon": "Globe"
         }
       ]
     },
     {
       "id": "ary",
-      "image": "Ary.png",
+      "image": "Ary.jpg",
       "name": "Aryaman Harlalka",
       "role": "CEO & Co-Founder",
-      "description": "",
+      "description": "Aryaman is the CEO and co-founder of Parallel Parking Solutions Inc., spearheading the company's vision to revolutionize urban parking through innovative technology.",
       "buttons": [
         {
           "buttonText": "LinkedIn",
@@ -59,16 +71,12 @@
         {
           "buttonText": "Personal Website",
           "buttonLink": "https://julesfolio.myportfolio.com/",
-          "buttonIcon": "Globe",
-          "textColor": "#ffffff",
-          "buttonColor": "#333333"
+          "buttonIcon": "Globe"
         },
         {
           "buttonText": "Email",
           "buttonLink": "mailto:julesfolio.js@gmail.com",
-          "buttonIcon": "Mail",
-          "textColor": "#ffffff",
-          "buttonColor": "#EA4335"
+          "buttonIcon": "Mail"
         }
       ]
     }
